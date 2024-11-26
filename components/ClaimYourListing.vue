@@ -45,17 +45,24 @@
  
      <!-- Right Section: Text -->
      <div class="w-1/2 pl-8">
-       <h2 class="text-4xl text-gray-800 font-light leading-tight text-center">
-         Post a Job <span class="underline text-yellow-500">for <span class="text-bold ">Free</span></span>
+       <h2 class="text-5xl text-black font-light leading-tight text-center">
+         Post a Job <span class="underline text-yellow-500">for <B style="font-weight:bolder;" class="text-bold  ">Free</B></span>
        </h2>
-       <p class="text-lg text-gray-900 mt-6 text-center">
+       <p class="text-lg text-gray-900 mt-6 ">
          Posting your job opening here is absolutely free! Let users easily discover your job listing without any cost. It’s simple to get started—just follow a few basic steps to get your job posted today. Reach potential candidates effortlessly and without any fees!
        </p>
        <p class="text-sm text-gray-500 mt-4">
          * No hidden charges. Only simple steps required to post your job and connect with qualified candidates.
        </p>
+       <Button class="text-3xl bg-sky-700 my-4 mx-24 text-white hover:bg-blue-900 w-[298px] h-[45px] text-center">
+  <a href="/jobs"> Publish Your Skill </a>
+</Button>
+<h1 style="font-size: 14px;" class="  text-center"> or call <B> +251979202894</B></h1>
+
      </div>
+     
    </div>
+ 
 </template>
 
 <script>
@@ -69,65 +76,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Styling for the icons */
-.icon-container {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-}
 
-/* Styling for the connecting lines */
-.line {
-  position: absolute;
-  width: 80%;
-  height: 8px;
-  background-color: #ccc;
-}
 
-.line-1 {
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.line-2 {
-  top: 50%;
-  right: 50%;
-  transform: translateX(50%);
-}
-
-/* Additional styling */
-img {
-  border: 5px solid #f0f0f0;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Text Styling */
-h2 {
-  font-weight: 300; /* Font lightened */
-  color: #333;
-  text-align: left;
-  margin-bottom: 1.5rem;
-}
-
-h2 span {
-  text-decoration: underline;
-  color: #fbbf24; /* Tailwind's yellow-500 */
-}
-
-p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: #4a4a4a;
-  margin-bottom: 1rem;
-}
-
-p:last-child {
-  font-size: 0.875rem;
-  color: #777;
-  margin-top: 0;
-}
 </style>
