@@ -1,0 +1,8 @@
+[
+   { "city": "New York", "region": "New York", "country": "USA", "population": 8419600 },
+   { "city": "Los Angeles", "region": "California", "country": "USA", "population": 3980400 },
+   { "city": "Chicago", "region": "Illinois", "country": "USA", "population": 2716000 },
+   { "city": "Toronto", "region": "Ontario", "country": "Canada", "population": 2731571 },
+   { "city": "Vancouver", "region": "British Columbia", "country": "Canada", "population": 631490 }
+ ]
+ 
