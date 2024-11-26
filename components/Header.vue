@@ -78,7 +78,7 @@
         </tbody>
       </table>
     </div>
-
+Write
     <!-- Loading Indicator -->
     <div v-if="isLoading" class="container mx-auto mt-6 px-6 text-center">
       <p>Loading cities...</p>

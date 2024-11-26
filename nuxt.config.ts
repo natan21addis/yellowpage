@@ -2,7 +2,8 @@ export default defineNuxtConfig({
   // Global CSS configuration
   css: [
     '@/assets/css/tailwind.css',
-    'font-awesome/css/font-awesome.css' // Add Font Awesome globally
+    'font-awesome/css/font-awesome.css',
+    '@fortawesome/fontawesome-free/css/all.css' // Add Font Awesome globally
   ],
 
   // Build modules (including Tailwind CSS and ShadCN Nuxt module)
@@ -47,7 +48,7 @@ export default defineNuxtConfig({
     link: [
       { 
         rel: 'stylesheet',
-        href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'
       }
     ]
   },
