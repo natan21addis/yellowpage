@@ -84,11 +84,14 @@
         <div
           class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out"
         >
-          <i :class="item.icon" class="text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
+          <i
+            :class="item.icon"
+            class="text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"
+          ></i>
         </div>
         <h2
           class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono"
-          style="font-size: 15px;"
+          style="font-size: 15px"
         >
           {{ item.label }}
         </h2>
@@ -103,12 +106,7 @@ export default {
     return {
       searchQuery: "",
       selectedLocation: "",
-      locations:[
-  "Addis Ababa",
-  "Adama (Nazret)",
-  "Dire Dawa",
-  
-],
+      locations: ["Addis Ababa", "Adama (Nazret)", "Dire Dawa"],
 
       filteredLocations: [],
       iconItems: [
@@ -138,33 +136,30 @@ export default {
     };
   },
 
-    methods: {
-  filterLocations() {
-    const query = this.searchQuery.toLowerCase();
-    this.filteredLocations = this.locations.filter((location) =>
-      location.toLowerCase().includes(query)
-    );
+  methods: {
+    filterLocations() {
+      const query = this.searchQuery.toLowerCase();
+      this.filteredLocations = this.locations.filter((location) =>
+        location.toLowerCase().includes(query)
+      );
+    },
+    handleSearch() {
+      console.log(
+        `Search Query: ${this.searchQuery}, Selected Location: ${this.selectedLocation}`
+      );
+    },
   },
-  handleSearch() {
-    console.log(
-      `Search Query: ${this.searchQuery}, Selected Location: ${this.selectedLocation}`
-    );
+  watch: {
+    searchQuery() {
+      this.filterLocations();
+    },
   },
-},
-watch:{
-  searchQuery(){
-    this.filterLocations();
-  },
-},
-  
+
   created() {
     this.filteredLocations = this.locations;
   },
 };
 </script>
-
-
-
 
 <style scoped>
 .search-section {
