@@ -4,7 +4,7 @@
     <header class="bg-white shadow-lg sticky top-0 z-50">
       <div class="container mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
-        <div class="text-black text-2xl font-bold">YellowPages</div>
+        <div class="text-black text-3xl font-serif">YellowPages</div>
 
         <!-- Desktop Menu -->
         <nav class="hidden md:flex space-x-8 items-center">
@@ -78,7 +78,7 @@
         </tbody>
       </table>
     </div>
-Write
+
     <!-- Loading Indicator -->
     <div v-if="isLoading" class="container mx-auto mt-6 px-6 text-center">
       <p>Loading cities...</p>

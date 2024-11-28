@@ -6,7 +6,7 @@
     >
       Discover Local
     </h1>
- 
+
     <div
       class="flex search-section bg-yellow-400 py-6 mt-24 items-center justify-center text-center"
     >
@@ -31,6 +31,7 @@
             }"
             class="px-4 py-2 border"
             placeholder="Enter keyword, business, service"
+            @input="filterLocations"
           />
 
           <!-- Filters (Dropdowns) -->
@@ -47,7 +48,7 @@
           >
             <option value="">Select Location</option>
             <option
-              v-for="location in locations"
+              v-for="location in filteredLocations"
               :key="location"
               :value="location"
             >
@@ -75,107 +76,24 @@
 
     <!-- People Icon Section -->
     <div class="flex flex-wrap justify-center items-center space-x-9 mt-12">
-  <!-- Find People -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fas fa-user-friends text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
+      <div
+        v-for="item in iconItems"
+        :key="item.name"
+        class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out"
+      >
+        <div
+          class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out"
+        >
+          <i :class="item.icon" class="text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
+        </div>
+        <h2
+          class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono"
+          style="font-size: 15px;"
+        >
+          {{ item.label }}
+        </h2>
+      </div>
     </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Find People</h2>
-  </div>
-
-  <!-- Restaurant -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-utensils text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Find Restaurant</h2>
-  </div>
-
-  <!-- Dentist -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-tooth text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h3 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Dentist</h3>
-  </div>
-
-  <!-- Plumbers -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-wrench text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Plumbers</h2>
-  </div>
-
-  <!-- Contractors -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-hammer text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h3 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Contractors</h3>
-  </div>
-
-  <!-- Electricians -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-bolt text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Electricians</h2>
-  </div>
-
-  <!-- Auto Repairs -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-screwdriver-wrench text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Auto Repair</h2>
-  </div>
-
-  <!-- Roofings -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-people-roof text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Roofings</h2>
-  </div>
-
-  <!-- Attorneys -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-scale-balanced text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Attorneys</h2>
-  </div>
-
-  <!-- Hotels -->
-  <div class="flex flex-col items-center mt-12 group hover:scale-105 transition-transform duration-300 ease-in-out">
-    <!-- Icon -->
-    <div class="flex items-center justify-center w-20 h-20 bg-yellow-400 rounded-full group-hover:bg-yellow-500 transition-all duration-300 ease-in-out">
-      <i class="fa-solid fa-hotel text-3xl text-black group-hover:text-white transition-colors duration-300 ease-in-out"></i>
-    </div>
-    <!-- Text -->
-    <h2 class="mt-4 text-xl text-black font-medium group-hover:text-yellow-500 transition-colors duration-300 ease-in-out font-mono" style="font-size: 15px;">Hotels</h2>
-  </div>
-</div>
-
   </div>
 </template>
 
@@ -183,41 +101,70 @@
 export default {
   data() {
     return {
-      searchQuery: "", // The search query input
-      selectedLocation: "", // Selected location filter
-      locations: [
-        "New York",
-        "Los Angeles",
-        "Chicago",
-        "San Francisco",
-        "Houston",
-      ], // Example locations
-      // Inline style bindings
-      inputWidth: "600px",
-      inputHeight: "90px",
+      searchQuery: "",
+      selectedLocation: "",
+      locations:[
+  "Addis Ababa",
+  "Adama (Nazret)",
+  "Dire Dawa",
+  
+],
+
+      filteredLocations: [],
+      iconItems: [
+        { icon: "fas fa-user-friends", label: "Find People" },
+        { icon: "fa-solid fa-utensils", label: "Find Restaurant" },
+        { icon: "fa-solid fa-tooth", label: "Dentist" },
+        { icon: "fa-solid fa-wrench", label: "Plumbers" },
+        { icon: "fa-solid fa-hammer", label: "Contractors" },
+        { icon: "fa-solid fa-bolt", label: "Electricians" },
+        { icon: "fa-solid fa-screwdriver-wrench", label: "Auto Repair" },
+        { icon: "fa-solid fa-people-roof", label: "Roofings" },
+        { icon: "fa-solid fa-scale-balanced", label: "Attorneys" },
+        { icon: "fa-solid fa-hotel", label: "Hotels" },
+      ],
+      inputWidth: "300px",
+      inputHeight: "40px",
       inputTop: "0px",
-      inputLeft: "130px",
-
-      selectWidth: "450px",
-      selectHeight: "90px",
+      inputLeft: "0px",
+      selectWidth: "200px",
+      selectHeight: "40px",
       selectTop: "0px",
-      selectLeft: "8px",
-
-      buttonWidth: "130px",
-      buttonHeight: "48px",
-      buttonTop: "1px",
-      buttonLeft: "180px",
+      selectLeft: "0px",
+      buttonWidth: "100px",
+      buttonHeight: "40px",
+      buttonTop: "0px",
+      buttonLeft: "0px",
     };
   },
-  methods: {
-    handleSearch() {
-      // Perform the search logic here
-      console.log("Search Query:", this.searchQuery);
-      console.log("Selected Location:", this.selectedLocation);
-    },
+
+    methods: {
+  filterLocations() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredLocations = this.locations.filter((location) =>
+      location.toLowerCase().includes(query)
+    );
+  },
+  handleSearch() {
+    console.log(
+      `Search Query: ${this.searchQuery}, Selected Location: ${this.selectedLocation}`
+    );
+  },
+},
+watch:{
+  searchQuery(){
+    this.filterLocations();
+  },
+},
+  
+  created() {
+    this.filteredLocations = this.locations;
   },
 };
 </script>
+
+
+
 
 <style scoped>
 .search-section {
